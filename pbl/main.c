@@ -1,39 +1,31 @@
-﻿#include <SDL.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include "SDL_mixer.h"
 #include <stdio.h>
+#include <stdbool.h>
 
-#include "constants.h"
+#include "globals.h"
 #include "initializer.h"
-#include "map.h"
 #include "render.h"
-#include "update.h"
-#include "input.h"
-#include "texturemanager.h"
-#include "ui.h"
-#include "collision.h"
-#include "levelmanager.h"
-#include "inventory.h"
-#include "player.h"
-#include "funtzioak.h"
+
+// ESTRUCTURAS
+SDL sdl = { NULL, NULL, NULL, NULL};
+SETTINGS settings = { 1280, 720, 50, false};
+
+// VARIABLES
+int game_is_running = false;
 
 
+int main() 
+{
+	game_is_running = initialize_window(&sdl, &settings);
+	do {
 
-int game_is_running = FALSE;
+		render(sdl.renderer);
+	} while (game_is_running);
 
-
-void jokoa() {
-    game_is_running = initialize_window();
-    loadCharacterAnimations(renderer);
-    loadEnemiesAnimations(renderer);
-    load_ui_textures(renderer);
-    load_object_textures(renderer);
-    load_inventory_textures(renderer);
-    setup();
-    while (game_is_running) {
-        process_input();
-        update();
-        render();
-    }
-    destroy_window();
+	return 0;
 }

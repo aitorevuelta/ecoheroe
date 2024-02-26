@@ -1,100 +1,83 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include "SDL_mixer.h"
 #include <stdio.h>
+#include <stdbool.h>
 
+#include "globals.h"
 #include "initializer.h"
-#include "constants.h"
-#include "player.h"
 
 
-SDL_Window* window = NULL;
-SDL_Renderer* renderer = NULL;
-TTF_Font* font = NULL;
-TTF_Font* fontSmall = NULL;
-
-int windowWidth = WINDOW_WIDTH;
-int windowHeight = WINDOW_HEIGHT;
-
-int initialize_window() {
+int initialize_window(SDL* sdl, SETTINGS* settings)
+{
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         fprintf(stderr, "SDL error.\n");
-        return FALSE;
+        return false;
     }
 
-    window = SDL_CreateWindow("Eco heroe", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, NULL);
-    if (!window) {
+    sdl->window = SDL_CreateWindow("Eco heroe 33", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, NULL);
+    if (!sdl->window) {
         fprintf(stderr, "Error creating SDL window.\n");
-        return FALSE;
+        return false;
     }
 
-    renderer = SDL_CreateRenderer(window, -1, 0);
-    if (!renderer) {
+    sdl->renderer = SDL_CreateRenderer(sdl->window, -1, 0);
+    if (!sdl->renderer) {
         fprintf(stderr, "Error creating SDL renderer.\n");
-        return FALSE;
+        return false;
     }
 
     if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG) {
         fprintf(stderr, "Error al inicializar SDL_image: %s\n", IMG_GetError());
         SDL_Quit();
-        return FALSE;
+        return false;
     }
 
     if ((IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG) != IMG_INIT_JPG) {
         fprintf(stderr, "Error al inicializar SDL_image: %s\n", IMG_GetError());
         SDL_Quit();
-        return FALSE;
+        return false;
     }
 
     if (TTF_Init() != 0) {
         fprintf(stderr, "Error al inicializar SDL_ttf: %s\n", TTF_GetError());
         SDL_Quit();
-        return FALSE;
+        return false;
     }
 
-    font = TTF_OpenFont("font/pixelart.ttf", 24);
-    if (!font) {
+    sdl->font = TTF_OpenFont("font/pixelart.ttf", 24);
+    if (!sdl->font) {
         fprintf(stderr, "Error al cargar la fuente: %s\n", TTF_GetError());
         SDL_Quit();
-        return FALSE;
+        return false;
     }
-    fontSmall = TTF_OpenFont("font/pixelart.ttf", 20);
-    if (!fontSmall)
+    sdl->font_small = TTF_OpenFont("font/pixelart.ttf", 20);
+    if (!sdl->font_small)
     {
         fprintf(stderr, "Error al cargar la fuente: %s\n", TTF_GetError());
         SDL_Quit();
-        return FALSE;
+        return false;
     }
-    return TRUE;
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        fprintf(stderr, "Error al inicializar SDL Mixer: %s\n", Mix_GetError());
+        SDL_Quit();
+        return false;
+    }
+    return true;
 }
 
-void toggle_fullscreen() {
+void toggle_fullscreen(SDL_Window* window, int* window_width, int* window_height) 
+{
     if (SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN) {
         SDL_SetWindowFullscreen(window, 0);
-        SDL_SetWindowSize(window, WINDOW_WIDTH, WINDOW_HEIGHT);
-        SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+        SDL_SetWindowSize(window, 1280, 720);
+        SDL_GetWindowSize(window, window_width, window_height);
     }
     else {
         SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-        SDL_GetWindowSize(window, &windowWidth, &windowHeight);
-        SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+        SDL_GetWindowSize(window, window_width, window_height);
+        SDL_GetWindowSize(window, window_width, window_height);
     }
-}
-
-void destroy_window() {
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-}
-
-void setup() {
-    walle.width = 50;
-    walle.height = walle.width + 20;
-    walle.x = 250;
-    walle.y = 300;
-    walle.currentQuest = 0;
-    toxic_value = 0;
-    health_value = 100;
-    walle.range = 100;
-    walle.damage = 20;
 }
