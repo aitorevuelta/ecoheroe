@@ -16,7 +16,7 @@ int initialize_window(SDL* sdl, SETTINGS* settings)
         return false;
     }
 
-    sdl->window = SDL_CreateWindow("Eco heroe 33", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, NULL);
+    sdl->window = SDL_CreateWindow("Eco heroe 33", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, settings->window_width, settings->window_height, settings->fullscreen);
     if (!sdl->window) {
         fprintf(stderr, "Error creating SDL window.\n");
         return false;

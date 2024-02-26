@@ -21,8 +21,10 @@ void render(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
+    // Crear un rectángulo para el cuadrado
     SDL_Rect rect = { 100, 100, 50, 50 };
 
+    // Dibujar el rectángulo
     SDL_RenderDrawRect(renderer, &rect);
 
     // Renderizar el cuadrado

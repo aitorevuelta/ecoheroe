@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="initializer.c" />
+    <ClCompile Include="input.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="menu.c" />
     <ClCompile Include="render.c" />
@@ -27,6 +28,7 @@
   <ItemGroup>
     <ClInclude Include="globals.h" />
     <ClInclude Include="initializer.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="render.h" />
   </ItemGroup>

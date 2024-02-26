@@ -11,10 +11,11 @@ typedef struct SDL_s
 
 typedef struct SETTINGS_S
 {
-	int window_height;
 	int window_width;
+	int window_height;
 	float volume;
 	int fullscreen;
+	int fps;
 } SETTINGS;
 
 #endif 
