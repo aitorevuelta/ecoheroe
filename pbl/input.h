@@ -1,23 +1,17 @@
-// input.h
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "initializer.h" // Include necessary headers
+#define NUM_KEYS 15
 
-extern int UP;
-extern int DOWN;
-extern int LEFT;
-extern int RIGHT;
-extern int LETRAE;
-extern int NUM1;
-extern int NUM2;
-extern int NUM3;
-extern int NUM4;
-extern int NUM5;
-extern int TAB;
-extern int F;
-extern int SPACE;
+typedef struct MOUSE_COORDS_s {
+    int x;
+    int y;
+} MOUSE_COORDS;
 
-void process_input();
+typedef enum KEYS_e {NONE = -1, UP, DOWN, LEFT, RIGHT, LETRAE, LETRAF, NUM1, NUM2, NUM3, NUM4, NUM5, TAB, SPACE, F11, ESCAPE} KEYS;
 
-#endif // INPUT_H
+int process_input(MOUSE_COORDS* mouse_coords);
+void handle_key_down(SDL_Keycode key);
+void handle_key_up(SDL_Keycode key);
+
+#endif 

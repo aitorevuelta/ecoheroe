@@ -18,111 +18,42 @@
     <ClCompile Include="main.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="collision.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="initializer.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="input.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="inventory.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="levelmanager.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="map.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="objects.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="player.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="render.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="texturemanager.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ui.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="update.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="notification.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="enemies.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="quests.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="funtzioak.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="menu.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="render.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="input.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="update.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="collision.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="initializer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="input.h">
+    <ClInclude Include="globals.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="inventory.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="levelmanager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="map.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="objects.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
+    <ClInclude Include="menu.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="render.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="texturemanager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ui.h">
+    <ClInclude Include="input.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="update.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="notification.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="enemies.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="quests.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="funtzioak.h">
+    <ClInclude Include="textures.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

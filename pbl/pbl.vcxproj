@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="initializer.c" />
+    <ClCompile Include="input.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="menu.c" />
+    <ClCompile Include="render.c" />
+    <ClCompile Include="update.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="initializer.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="render.h" />
+    <ClInclude Include="textures.h" />
+    <ClInclude Include="update.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -129,46 +146,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="collision.c" />
-    <ClCompile Include="enemies.c" />
-    <ClCompile Include="funtzioak.c" />
-    <ClCompile Include="initializer.c" />
-    <ClCompile Include="input.c" />
-    <ClCompile Include="inventory.c" />
-    <ClCompile Include="levelmanager.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="map.c" />
-    <ClCompile Include="menu.c" />
-    <ClCompile Include="notification.c" />
-    <ClCompile Include="objects.c" />
-    <ClCompile Include="player.c" />
-    <ClCompile Include="quests.c" />
-    <ClCompile Include="render.c" />
-    <ClCompile Include="texturemanager.c" />
-    <ClCompile Include="ui.c" />
-    <ClCompile Include="update.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="collision.h" />
-    <ClInclude Include="constants.h" />
-    <ClInclude Include="enemies.h" />
-    <ClInclude Include="funtzioak.h" />
-    <ClInclude Include="initializer.h" />
-    <ClInclude Include="input.h" />
-    <ClInclude Include="inventory.h" />
-    <ClInclude Include="levelmanager.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="map.h" />
-    <ClInclude Include="notification.h" />
-    <ClInclude Include="objects.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="quests.h" />
-    <ClInclude Include="render.h" />
-    <ClInclude Include="texturemanager.h" />
-    <ClInclude Include="ui.h" />
-    <ClInclude Include="update.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

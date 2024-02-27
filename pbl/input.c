@@ -1,127 +1,86 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include "SDL_mixer.h"
 #include <stdio.h>
+#include <stdbool.h>
 
+#include "globals.h"
+#include "initializer.h"
+#include "render.h"
 #include "input.h"
-#include "main.h"
-#include "constants.h"
 
+bool keys[NUM_KEYS] = { false };
 
-int UP = FALSE;
-int DOWN = FALSE;
-int LEFT = FALSE;
-int RIGHT = FALSE;
-int LETRAE = FALSE;
-int NUM1 = FALSE;
-int NUM2 = FALSE;
-int NUM3 = FALSE;
-int NUM4 = FALSE;
-int NUM5 = FALSE;
-int TAB = FALSE;
-int F = FALSE;
-int SPACE = FALSE;
+void handle_key_down(SDL_Keycode key)
+{
+    switch (key)
+    {
+    case SDLK_w: keys[UP] = true; break;
+    case SDLK_s: keys[DOWN] = true; break;
+    case SDLK_a: keys[LEFT] = true; break;
+    case SDLK_d: keys[RIGHT] = true; break;
+    case SDLK_e: keys[LETRAE] = true; break;
+    case SDLK_f: keys[LETRAF] = true; break;
+    case SDLK_1: keys[NUM1] = true; break;
+    case SDLK_2: keys[NUM2] = true; break;
+    case SDLK_3: keys[NUM3] = true; break;
+    case SDLK_4: keys[NUM4] = true; break;
+    case SDLK_5: keys[NUM5] = true; break;
+    case SDLK_TAB: keys[TAB] = true; break;
+    case SDLK_SPACE: keys[SPACE] = true; break;
+    case SDLK_F11: keys[F11] = true; break;
+    case SDLK_ESCAPE: keys[ESCAPE] = true; break;
+    default: break;
+    }
+}
 
+void handle_key_up(SDL_Keycode key)
+{
+    switch (key)
+    {
+    case SDLK_w: keys[UP] = false; break;
+    case SDLK_s: keys[DOWN] = false; break;
+    case SDLK_a: keys[LEFT] = false; break;
+    case SDLK_d: keys[RIGHT] = false; break;
+    case SDLK_e: keys[LETRAE] = false; break;
+    case SDLK_f: keys[LETRAF] = false; break;
+    case SDLK_1: keys[NUM1] = false; break;
+    case SDLK_2: keys[NUM2] = false; break;
+    case SDLK_3: keys[NUM3] = false; break;
+    case SDLK_4: keys[NUM4] = false; break;
+    case SDLK_5: keys[NUM5] = false; break;
+    case SDLK_TAB: keys[TAB] = false; break;
+    case SDLK_SPACE: keys[SPACE] = false; break;
+    case SDLK_F11: keys[F11] = false; break;
+    case SDLK_ESCAPE: keys[ESCAPE] = false; break;
+    default: break;
+    }
+}
 
-void process_input() {
+int process_input(MOUSE_COORDS* mouse_coords)
+{
     SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        handle_drag_and_drop(&event);
-
-        switch (event.type) {
-        case SDL_QUIT:
-            game_is_running = FALSE;
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+        case SDL_KEYDOWN: handle_key_down(event.key.keysym.sym); break;
+        case SDL_KEYUP: handle_key_up(event.key.keysym.sym); break;
+        case SDL_MOUSEMOTION:
+            mouse_coords->x = event.motion.x;
+            mouse_coords->y = event.motion.y;
             break;
-        case SDL_KEYDOWN:
-            switch (event.key.keysym.sym) {
-            case SDLK_ESCAPE:
-                game_is_running = FALSE;
-                break;
-            case SDLK_w:
-                UP = TRUE;
-                break;
-            case SDLK_s:
-                DOWN = TRUE;
-                break;
-            case SDLK_a:
-                LEFT = TRUE;
-                break;
-            case SDLK_d:
-                RIGHT = TRUE;
-                break;
-            case SDLK_e:
-                LETRAE = TRUE;
-                break;
-            case SDLK_1:
-                NUM1 = TRUE;
-                break;
-            case SDLK_2:
-                NUM2 = TRUE;
-                break;
-            case SDLK_3:
-                NUM3 = TRUE;
-                break;
-            case SDLK_4:
-                NUM4 = TRUE;
-                break;
-            case SDLK_5:
-                NUM5 = TRUE;
-                break;
-            case SDLK_TAB:
-                TAB = TRUE;
-                break;
-            case SDLK_f:
-                F = TRUE;
-                break;
-            case SDLK_SPACE:
-                SPACE = TRUE;
-                break;
-            case SDLK_F11:
-                toggle_fullscreen();
-                break;
-            }
-            break;
-        case SDL_KEYUP:
-            switch (event.key.keysym.sym) {
-            case SDLK_w:
-                UP = FALSE;
-                break;
-            case SDLK_s:
-                DOWN = FALSE;
-                break;
-            case SDLK_a:
-                LEFT = FALSE;
-                break;
-            case SDLK_d:
-                RIGHT = FALSE;
-                break;
-            case SDLK_e:
-                LETRAE = FALSE;
-                break;
-            case SDLK_1:
-                NUM1 = FALSE;
-                break;
-            case SDLK_2:
-                NUM2 = FALSE;
-                break;
-            case SDLK_3:
-                NUM3 = FALSE;
-                break;
-            case SDLK_4:
-                NUM4 = FALSE;
-                break;
-            case SDLK_5:
-                NUM5 = FALSE;
-                break;
-            case SDLK_f:
-                F = FALSE;
-                break;
-            case SDLK_SPACE:
-                SPACE = FALSE;
-                break;
-            case SDLK_TAB:
-                TAB = FALSE;
-                break;
-            }
-            break;
+        default: break;
         }
     }
+
+    for (int i = UP; i <= ESCAPE; ++i)
+    {
+        if (keys[i]) return i;
+    }
+
+    return NONE;
 }
